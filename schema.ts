@@ -25,7 +25,9 @@ export const lists = {
       afterOperation: async ({ item }) => {
         const responses = await Promise.all([
           purgeUrl('/'),
-          purgeUrl(`/posts/${item.slug}`)
+          purgeUrl('/?_data=routes%2Findex'),
+          purgeUrl(`/posts/${item.slug}`),
+          purgeUrl(`/posts/${item.slug}?_data=routes%2Fposts%2F%24slug`),
         ])
         console.log(responses)
         
