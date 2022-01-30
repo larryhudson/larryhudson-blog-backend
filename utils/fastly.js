@@ -1,3 +1,5 @@
+import fetch from "node-fetch"
+
 export function purgeUrl(url) {
     if (!process.env.FASTLY_API_KEY) {
         console.log('FASTLY_API_KEY not set, cannot purge')
