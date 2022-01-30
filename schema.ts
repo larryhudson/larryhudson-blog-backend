@@ -1,6 +1,7 @@
 import { list } from '@keystone-6/core';
 import { select, relationship, text, timestamp, password } from '@keystone-6/core/fields';
 import { document } from '@keystone-6/fields-document';
+import { purgeUrl } from './utils/fastly';
 
 export const lists = {
   Post: list({
@@ -20,6 +21,14 @@ export const lists = {
       }),
       publishDate: timestamp(),
     },
+    hooks: {
+      afterOperation: async ({ item }) => {
+        await Promise.all([
+          purgeUrl('/'),
+          purgeUrl(`/posts/${item.slug}`)
+        ])
+      }
+    }
   }),
   Person: list({
     fields: {

@@ -39,5 +39,8 @@ export default withAuth(
       useMigrations: true,
     },
     lists,
-    session
+    session,
+    server: {
+      port: process.env.NODE_ENV === 'production' ? 3000 : 3333
+    }
   }));
