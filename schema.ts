@@ -23,10 +23,12 @@ export const lists = {
     },
     hooks: {
       afterOperation: async ({ item }) => {
-        await Promise.all([
+        const responses = await Promise.all([
           purgeUrl('/'),
           purgeUrl(`/posts/${item.slug}`)
         ])
+        console.log(responses)
+        
       }
     }
   }),
