@@ -41,6 +41,6 @@ export default withAuth(
     lists,
     session,
     server: {
-      port: process.env.NODE_ENV === 'production' ? 3000 : 3333
+      port: process.env.NODE_ENV === 'production' ? process.env.PORT : 3333
     }
   }));
